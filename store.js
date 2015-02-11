@@ -52,7 +52,7 @@
 
 		// if it is a promise it may be frozen
 		if (isPromise) {
-			results = lang.delegate(results);
+			results = delegate(results);
 		}
 
 		function addIterativeMethod(method){
@@ -239,25 +239,29 @@
 	RestStore.prototype._makeRequest = function (options) {
 
 		// prepare headers for the request
-		var headers = {};
-		$.extend(
-			headers,
-			{ Accept: this.accepts },
-			this.headers,
-			options.headers || options
-		);
+		var headers = $.extend(
+				{},
+				{ Accept: this.accepts },
+				this.headers,
+				options.headers || options
+			);
 
 		return $.ajax(
 			options.url,
 			{
 				type: options.type,
 				dataType: this.DATA_TYPE,
-				headers: headers
+				headers: headers,
+				data: options.data
 			}
 		);
 	};
 
-	$.fn.RestStore = RestStore;
+	if ($.RestStore) {
+		throw 'RestStore already defined in jQuery.';
+	}
+
+	$.RestStore = RestStore;
 	return RestStore;
 
 }));
