@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Implementation of a JSON REST store in jQuery conforming to dojo/store api",
   "main": "store.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/joshuaboshi/jquery-store.git"
