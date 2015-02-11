@@ -15,11 +15,71 @@
         <button class="get">Get one item</button>
         <button class="add">Add new item</button>
         <button class="put">Update existing item</button>
+        <button class="delete">Delete existing item</button>
 
-
+        <p>
+            <strong>Open the console to see the results</strong><br>
+            The API server is faking the responses. It is not a real API with querying, and persistency capabilities. The whole purpose of this test is to see that the requests are made and responses correctly returned.<br>
+            <em>If you are wondering, the OPTIONS requests are triggered automatically by browser due to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a></em>
+        </p>
         <script type="text/javascript">
 
-            $('.save').click(function () {
+            var APIARY_ENDPOINT = 'http://private-25f6c-jqueryreststore.apiary-mock.com/notes';
+
+            var testStore = new $.RestStore({
+                target: APIARY_ENDPOINT
+            });
+
+            $('.query').click(function () {
+                console.log('Querying the endpoint for all the items');
+                testStore.query().then(function (result) {
+                    console.log(result);
+                }, function (err) {
+                    console.error(err);
+                });
+            });
+
+            $('.get').click(function () {
+                console.log('Querying the endpoint for the item with ID=2');
+                testStore.get(2).then(function (result) {
+                    console.log(result);
+                }, function (err) {
+                    console.error(err);
+                });
+            });
+
+            $('.add').click(function () {
+                var data = {
+                    title: "Buy cheese and bread for breakfast."
+                };
+                console.log('Adding a new item', data);
+                testStore.add(data).then(function (result) {
+                    console.log(result);
+                }, function (err) {
+                    console.error(err);
+                });
+            });
+
+            $('.put').click(function () {
+                var data = {
+                    id: 2,
+                    title: "Buy cheese and bread for breakfast."
+                };
+                console.log('Updating an item with ID=2', data);
+                testStore.put(data).then(function (result) {
+                    console.log(result);
+                }, function (err) {
+                    console.error(err);
+                });
+            });
+
+            $('.delete').click(function () {
+                console.log('Removing an item with ID=3');
+                testStore.remove(3).then(function (result) {
+                    console.log(result);
+                }, function (err) {
+                    console.error(err);
+                });
             });
 
         </script>
