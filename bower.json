@@ -1,0 +1,32 @@
+{
+  "name": "jquery-rest-store",
+  "version": "1.0.0",
+  "homepage": "https://github.com/joshuaboshi/jquery-store",
+  "authors": [
+    "Tomas Kralik <tomas.kralik@gmail.com>"
+  ],
+  "description": "Implementation of a JSON REST store in jQuery conforming to dojo/store api",
+  "main": "store.js",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.0",
+  },
+  "keywords": [
+    "dojo",
+    "store",
+    "jquery",
+    "rest",
+    "json"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
