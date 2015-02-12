@@ -21,7 +21,7 @@
     "rest",
     "json"
   ],
-  "license": "MIT",
+  "license": "MIT/BSD",
   "ignore": [
     "**/.*",
     "node_modules",

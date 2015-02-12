@@ -15,7 +15,7 @@
     "json"
   ],
   "author": "Tomas Kralik",
-  "license": "MIT",
+  "license": "MIT/BSD",
   "bugs": {
     "url": "https://github.com/joshuaboshi/jquery-store/issues"
   },
