@@ -1,56 +1,55 @@
-# jquery-rest-store #
-Implementation of a JSON REST store in jQuery conforming with dojo/store api.
+FORMAT: 1A
 
-Parts of the source code were copied and adopted directly from the Dojo project (https://github.com/dojo/dojo).
+# jquery-rest-store
+Testing api for the implementation of a JSON REST store in jQuery (https://github.com/joshuaboshi/jquery-store)
 
-Namely these sources: 
+## Notes Collection [/notes]
+### List all Notes [GET]
++ Response 200 (application/json)
 
- * <https://github.com/dojo/dojo/blob/master/store/JsonRest.js>
- * <https://github.com/dojo/dojo/blob/master/store/util/QueryResults.js>
- * <https://github.com/dojo/dojo/blob/master/_base/lang.js>
+        [{
+          "id": 1, "title": "Jogging in park"
+        }, {
+          "id": 2, "title": "Pick-up posters from post-office"
+        }]
 
-Only basic functionality was tested (check test.html). More complex tests are planned.
+### Create a Note [POST]
++ Request (application/json)
 
-Feel free to report any bugs to the issue tracker.
+        { "title": "Buy cheese and bread for breakfast." }
 
-## Dependencies ##
- * jQuery => 1.11.0
- * JSON.toString (use shim, if you need to support old browsers)
++ Response 201 (application/json)
 
-## Usage ##
+        { "id": 3, "title": "Buy cheese and bread for breakfast." }
 
-You can find the in depth descrition of the store's API in [dojo documentation](http://dojotoolkit.org/reference-guide/1.10/dojo/store.html).
+## Note [/notes/{id}]
+A single Note object with all its details
 
-Include the script to you app and initialize the store:
-```javascript
-    var testStore = new $.RestStore({
-        target: 'http://your-service/api/rest-collection'
-    });
-```
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
 
-### Query for items ###
+### Update a Note [PUT]
++ Request (application/json)
 
-```javascript
-    testStore.query(q).then(function (result) {
-        console.log(result);
-    }, function (err) {
-        console.error(err);
-    });
-```
+        { "id": 3, "title": "Buy cheese and bread for dinner." }
 
-The `q` variable is the query parameters. It can either be empty, or a query string (`a=1&b=2`), or an object (`{a:1,b:2}`).
++ Response 200 (application/json)
 
+        { "id": 3, "title": "Buy cheese and bread for dinner." }
 
-## Notes ##
- * jQuery's implementation of promises - jQuery.Deferred() is used
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
 
-## Limitations ##
+### Retrieve a Note [GET]
++ Response 200 (application/json)
 
- * Only JSON format is supported and expected by the store
+    + Header
 
+            X-My-Header: The Value
 
+    + Body
 
-## Apiary testing server ##
+            { "id": 2, "title": "Pick-up posters from post-office" }
 
-The `test.htm` is performing against the Apiary service described here <http://docs.jqueryreststore.apiary.io/#reference>
-
+### Remove a Note [DELETE]
++ Response 204
